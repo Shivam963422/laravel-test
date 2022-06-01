@@ -3,16 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Workshop;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Date;
+use App\Http\Controllers\APIBaseController;
 
-class EventsController extends BaseController
+class EventsController extends APIBaseController
 {
-    public function getWarmupEvents() {
-        return Event::all();
+    public function getWarmupEvents() 
+
+    {
+       // return Event::all();
+
+        $events = Event::select(
+                "events.id",
+                "events.name",
+                "events.created_at",
+                "events.updated_at",
+                )
+                ->with('workshop_relation')
+                ->orderBy('events.created_at', 'desc')
+                ->get();
+
+
+        return $this->sendResponse($events, 'Sucess', 201);
+
+
+
     }
 
     /*

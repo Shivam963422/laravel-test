@@ -35,6 +35,8 @@ class EventsController extends APIBaseController
 
     }
 
+    //-----------------------------------------------------------------------
+
 
     public function secondTask()
     {
@@ -53,6 +55,28 @@ class EventsController extends APIBaseController
 
         return $this->sendResponse($events, 'Sucess', 201);
 
+    }
+
+    //-----------------------------------------------------------------------
+
+
+    public function thirdTask()
+    {
+        $events = Workshop::select(
+                "workshops.id",
+                "workshops.start",
+                "workshops.end",
+                "workshops.event_id",
+                "workshops.name",
+                "workshops.created_at",
+                "workshops.updated_at",
+                )
+                ->with('menu_items_relation')
+                ->orderBy('workshops.created_at', 'desc')
+                ->get();
+
+
+        return $this->sendResponse($events, 'Sucess', 201);
     }
 
     /*

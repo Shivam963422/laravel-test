@@ -23,4 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
  Route::get('get_second_task_data', 'App\Http\Controllers\EventsController@secondTask');
 
+ Route::get('get_third_task_data', 'App\Http\Controllers\EventsController@thirdTask');
+
 

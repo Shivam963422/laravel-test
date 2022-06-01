@@ -15,4 +15,9 @@ class Workshop extends Model
 
 	public $table = 'workshops';
 
+	public function menu_items_relation()
+    {
+        return $this->hasMany('App\Models\MenuItem')->where('id', '!=', 'NULL');
+    }
+
 }

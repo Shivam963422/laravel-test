@@ -35,6 +35,26 @@ class EventsController extends APIBaseController
 
     }
 
+
+    public function secondTask()
+    {
+       
+        $events = Event::select(
+                "events.id",
+                "events.name",
+                "events.created_at",
+                "events.updated_at",
+                )
+                ->where('events.id','!=',1)
+                ->with('workshop_relation')
+                ->orderBy('events.created_at', 'desc')
+                ->get();
+
+
+        return $this->sendResponse($events, 'Sucess', 201);
+
+    }
+
     /*
      Requirements:
     - maximum 2 sql queries

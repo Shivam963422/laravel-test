@@ -20,3 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
  Route::get('get_events_with_workshop', 'App\Http\Controllers\EventsController@getWarmupEvents');
+
+ Route::get('get_second_task_data', 'App\Http\Controllers\EventsController@secondTask');
+
+
